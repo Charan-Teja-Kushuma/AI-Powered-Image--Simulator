@@ -47,7 +47,47 @@ MY_DATASET/
 └── jacket/
     ├── jacket_01.jpg
     └── ...
-Note: The code automatically handles (Anchor, Positive, Negative) triplet generation from this directory structure.🏗️ Model ArchitectureThe system uses a Triplet Network architecture:Input: Three images are fed into the network:Anchor (A): Reference image.Positive (P): Same class as Anchor.Negative (N): Different class from Anchor.Base Network (Shared Weights): Each image passes through the same MobileNetV2 backbone (frozen) + Custom Head (GlobalAveragePooling -> Dense -> L2 Normalization).Embedding: The network outputs a 128-dimensional vector for each image.Loss Function: The model minimizes Triplet Loss:$$L(A, P, N) = \max(d(A, P) - d(A, N) + \alpha, 0)$$Where $d$ is the Euclidean distance and $\alpha$ is the margin.💻 Installation & Usage1. Clone the RepositoryBashgit clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
+Note: The code automatically handles (Anchor, Positive, Negative) triplet generation from this directory structure.
+
+🏗️ Model Architecture
+The system uses a Triplet Network architecture:
+1.Input: Three images are fed into the network:
+Anchor (A): Reference image.
+Positive (P): Same class as Anchor.
+Negative (N): Different class from Anchor.
+2.Base Network (Shared Weights): Each image passes through the same MobileNetV2 backbone (frozen) + Custom Head (GlobalAveragePooling -> Dense -> L2 Normalization).
+3.Embedding: The network outputs a 128-dimensional vector for each image.
+4.Loss Function: The model minimizes Triplet Loss:
+L(A, P, N) = \max(d(A, P) - d(A, N) + \alpha, 0)
+Where $d$ is the Euclidean distance and $\alpha$ is the margin.
+
+💻 Installation & Usage
+1. Clone the Repository git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
 cd YOUR_REPO_NAME
-2. Install DependenciesBashpip install tensorflow numpy opencv-python matplotlib scikit-learn
-3. Run the ProjectThe project is currently structured as a Jupyter Notebook / Google Colab file.Open the .ipynb file in Jupyter Notebook or upload it to Google Colab.Upload your dataset zip file (e.g., MY_DATASET.zip) to the environment.Run the cells sequentially to:Unzip and preprocess data.Train the Triplet Network.Generate embeddings.Visualize search results.📊 ResultsThe model was trained for 10 epochs on a custom dataset of 1000+ images.Training Loss: Converged from 0.22 to ~0.02, indicating successful metric learning.Qualitative Search Accuracy:Query: WatchRetrieved 5/5 relevant "Watch" images with varying styles.Query: LaptopRetrieved 5/5 relevant "Laptop" images.🔮 Future Improvements[ ] Fast Search: Integrate Faiss (Facebook AI Similarity Search) for scaling to millions of images.[ ] API Deployment: Wrap the inference logic in a FastAPI or Flask server.[ ] Frontend: Build a simple React/Streamlit UI for users to upload query images.🤝 ContributingContributions are welcome! Please open an issue or submit a pull request for any improvements.
+2. Install Dependencies pip install tensorflow numpy opencv-python matplotlib scikit-learn
+3. Run the Project
+The project is currently structured as a Jupyter Notebook / Google Colab file.
+1.Open the .ipynb file in Jupyter Notebook or upload it to Google Colab.
+2.Upload your dataset zip file (e.g., MY_DATASET.zip) to the environment.
+3.Run the cells sequentially to:
+Unzip and preprocess data.
+Train the Triplet Network.
+Generate embeddings.
+Visualize search results.
+
+📊 Results
+The model was trained for 10 epochs on a custom dataset of 1000+ images.
+Training Loss: Converged from 0.22 to ~0.02, indicating successful metric learning.
+Qualitative Search Accuracy:
+Query: Watch
+Retrieved 5/5 relevant "Watch" images with varying styles.
+Query: Laptop
+Retrieved 5/5 relevant "Laptop" images.
+
+🔮 Future Improvements
+[ ] Fast Search: Integrate Faiss (Facebook AI Similarity Search) for scaling to millions of images.
+[ ] API Deployment: Wrap the inference logic in a FastAPI or Flask server.
+[ ] Frontend: Build a simple React/Streamlit UI for users to upload query images.
+
+🤝 Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any improvements.
