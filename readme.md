@@ -89,5 +89,3 @@ Retrieved 5/5 relevant "Laptop" images.
 [ ] API Deployment: Wrap the inference logic in a FastAPI or Flask server.
 [ ] Frontend: Build a simple React/Streamlit UI for users to upload query images.
 
-🤝 Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any improvements.
