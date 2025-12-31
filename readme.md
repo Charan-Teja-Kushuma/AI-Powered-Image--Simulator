@@ -48,18 +48,27 @@ MY_DATASET/
     ├── jacket_01.jpg
     └── ...
 Note: The code automatically handles (Anchor, Positive, Negative) triplet generation from this directory structure.
+```
+## 🏗️ Model Architecture
 
-🏗️ Model Architecture
 The system uses a Triplet Network architecture:
-1.Input: Three images are fed into the network:
+
+**1.Input:** Three images are fed into the network:
 Anchor (A): Reference image.
 Positive (P): Same class as Anchor.
 Negative (N): Different class from Anchor.
-2.Base Network (Shared Weights): Each image passes through the same MobileNetV2 backbone (frozen) + Custom Head (GlobalAveragePooling -> Dense -> L2 Normalization).
-3.Embedding: The network outputs a 128-dimensional vector for each image.
-4.Loss Function: The model minimizes Triplet Loss:
-L(A, P, N) = \max(d(A, P) - d(A, N) + \alpha, 0)
-Where $d$ is the Euclidean distance and $\alpha$ is the margin.
+
+**2.Base Network (Shared Weights):** Each image passes through the same MobileNetV2 backbone (frozen) + Custom Head   
+
+(GlobalAveragePooling -> Dense -> L2 Normalization).
+
+**3.Embedding:** The network outputs a 128-dimensional vector for each image.
+
+**4.Loss Function:** The model minimizes Triplet Loss:
+
+  L(A, P, N) = \max(d(A, P) - d(A, N) + \alpha, 0)
+
+  Where $d$ is the Euclidean distance and $\alpha$ is the margin.
 
 💻 Installation & Usage
 1. Clone the Repository git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
